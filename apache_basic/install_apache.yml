@@ -1,0 +1,14 @@
+- name: Install the apache web service
+  hosts: openshift
+  become: yes
+
+  tasks:
+   - name: install apache
+     yum:
+       name: httpd
+       state: installed
+
+   - name: start httpd
+     service:
+        name: httpd
+        state: started

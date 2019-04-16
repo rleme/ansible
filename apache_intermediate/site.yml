@@ -1,0 +1,7 @@
+---
+- name: This is my role-based playbook
+  hosts: openshift
+  become: yes
+
+  roles:
+  - apache-simple

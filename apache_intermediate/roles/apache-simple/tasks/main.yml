@@ -1,0 +1,19 @@
+# tasks file for apache-simple
+- name: install httpd packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ httpd_packages }}"
+  notify: restart apache service
+
+- name: copy index.html php_info.php
+  template:
+    src: "{{ item }}"
+    dest: /var/www/html/
+  with_fileglob:
+    - ../templates/*
+- name: start httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
