@@ -1,0 +1,15 @@
+- name: Install the apache web service
+  hosts: openshift
+  become: yes
+
+  tasks:
+    - name: stop httpd
+      service: 
+         name: httpd
+         state: started
+      
+    - name: Remove apache
+      yum:
+        name: httpd
+        state: absent
+
